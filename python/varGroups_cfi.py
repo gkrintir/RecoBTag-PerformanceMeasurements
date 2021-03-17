@@ -865,7 +865,7 @@ groupSet = cms.PSet(
     ),
     cms.PSet(
       group       = cms.string("Caroline"),
-      store       = cms.bool(False),
+        store       = cms.bool(True),
       description = cms.string("TODO"),
       variables   = cms.vstring(
         "nBitTrigger",

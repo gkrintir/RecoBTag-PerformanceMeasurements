@@ -50,7 +50,7 @@ options.register('usePuppiForBTagging', False,
     VarParsing.varType.bool,
     "Use Puppi candidates for b tagging"
 )
-options.register('mcGlobalTag', 'FIXME',
+options.register('mcGlobalTag', '94X_mc2017_realistic_forppRef5TeV',
     VarParsing.multiplicity.singleton,
     VarParsing.varType.string,
     "MC global tag, no default value provided"
@@ -332,7 +332,7 @@ options.register(
 )
 
 ## 'maxEvents' is already registered by the Framework, changing default value
-options.setDefault('maxEvents', -1)
+options.setDefault('maxEvents', 5000)
 
 options.parseArguments()
 if options.defaults:
@@ -771,7 +771,8 @@ process.source = cms.Source("PoolSource",
 if options.miniAOD:
     process.source.fileNames = [
         #/QCD_Pt-1000toInf_MuEnrichedPt5_TuneCP5_13TeV_pythia8/RunIIFall17MiniAOD-94X_mc2017_realistic_v10-v1/MINIAODSIM
-        '/store/mc/RunIIFall17MiniAOD/QCD_Pt-1000toInf_MuEnrichedPt5_TuneCP5_13TeV_pythia8/MINIAODSIM/94X_mc2017_realistic_v10-v1/00000/C8E934F8-1C06-E811-888D-0242AC130002.root'
+            #'/store/mc/RunIIFall17MiniAOD/QCD_Pt-1000toInf_MuEnrichedPt5_TuneCP5_13TeV_pythia8/MINIAODSIM/94X_mc2017_realistic_v10-v1/00000/C8E934F8-1C06-E811-888D-0242AC130002.root'
+         '/store/himc/RunIIpp5Spring18MiniAOD/QCD_Pt-20toInf_MuEnrichedPt15_TuneCP5_5p02TeV_pythia8/MINIAODSIM/94X_mc2017_realistic_forppRef5TeV-v1/60000/228DD92E-51C1-E811-A3FB-E0071B7AC770.root'
     ]
     if options.runOnData:
         process.source.fileNames = [
@@ -904,6 +905,7 @@ if options.usePrivateJEC:
     process.es_prefer_jec = cms.ESPrefer("PoolDBESSource",'jec')
 
 ### to activate the new JP calibration: using the data base
+'''
 trkProbaCalibTag = options.JPCalibration
 process.GlobalTag.toGet = cms.VPSet(
     cms.PSet(record = cms.string("BTagTrackProbability3DRcd"),
@@ -911,7 +913,7 @@ process.GlobalTag.toGet = cms.VPSet(
       connect = cms.string("frontier://FrontierProd/CMS_CONDITIONS")
     )
 )
-
+'''
 process.load("Configuration.StandardSequences.MagneticField_AutoFromDBCurrent_cff")
 process.load("Configuration.Geometry.GeometryRecoDB_cff")
 process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
